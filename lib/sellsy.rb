@@ -15,10 +15,15 @@ module Sellsy
     extend Forwardable
 
     attr_accessor :default_client_id, :default_client_secret
+
+    # v2
     def_delegators :client, :invoices, :companies, :individuals,
                    :document_models, :taxes
 
-    def_delegators :client, :get_infos
+    # v1
+    def_delegators :client, :get_infos, :document_create, :get_currencies,
+                   :get_doc_layouts, :get_pay_mediums, :get_translation_languages,
+                   :get_units
 
     def client
       Client.default
@@ -48,4 +53,10 @@ require 'sellsy/tax'
 require 'sellsy/taxes'
 
 # v1
-require 'sellsy/get_infos'
+require 'sellsy/v1/get_infos'
+require 'sellsy/v1/document_create'
+require 'sellsy/v1/get_currencies'
+require 'sellsy/v1/get_doc_layouts'
+require 'sellsy/v1/get_pay_mediums'
+require 'sellsy/v1/get_translation_languages'
+require 'sellsy/v1/get_units'

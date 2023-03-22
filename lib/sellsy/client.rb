@@ -35,7 +35,9 @@ module Sellsy
       request = Net::HTTP::Post.new(base.request_uri)
 
       request.set_form_data(
-        request: 1, io_mode: :json, do_in: { method: method, params: body }.to_json
+        request: 1,
+        io_mode: :json,
+        do_in: { method: method, params: body }.to_json
       )
       request["Authorization"] = "Bearer #{access_token}"
 
@@ -73,7 +75,31 @@ module Sellsy
     end
 
     def get_infos
-      Sellsy::GetInfos.new(self)
+      Sellsy::V1::GetInfos.new(self)
+    end
+
+    def document_create
+      Sellsy::V1::DocumentCreate.new(self)
+    end
+
+    def get_currencies
+      Sellsy::V1::GetCurrencies.new(self)
+    end
+
+    def get_doc_layouts
+      Sellsy::V1::GetDocLayouts.new(self)
+    end
+
+    def get_pay_mediums
+      Sellsy::V1::GetPayMediums.new(self)
+    end
+
+    def get_translation_languages
+      Sellsy::V1::GetTranslationLanguages.new(self)
+    end
+
+    def get_units
+      Sellsy::V1::GetUnits.new(self)
     end
 
     private
@@ -91,7 +117,7 @@ module Sellsy
           grant_type:    :client_credentials,
           client_id:     id,
           client_secret: secret
-        }.to_json
+        }
 
         response = _post('access-tokens', body: payload, base: AUTH_BASE)
 
@@ -101,7 +127,7 @@ module Sellsy
 
     def _post(path, body:, base:, headers: {})
       parse_response(Net::HTTP.post(
-        base + path, body,
+        base + path, body.to_json,
         { "Content-Type" => "application/json" }.merge(headers)
       ))
     end
@@ -119,7 +145,8 @@ module Sellsy
 
     def error_message(response)
       if response['Content-Type'] == "application/json"
-        JSON.parse(response.body).dig('error', 'message')
+        error = JSON.parse(response.body)
+        error['message'] || error.dig('error', 'message')
       else
         response.body[0..500]
       end

@@ -5,7 +5,7 @@ module Sellsy
     attr_reader :client, :data
 
     def create(data)
-      build(client.post(path, body: data.to_json))
+      build(client.post(path, body: data))
     end
 
     def build(data)
@@ -21,7 +21,7 @@ module Sellsy
     end
 
     def search(params = { filters: [] })
-      build_results(client.post(path + '/search', body: params.to_json))
+      build_results(client.post(path + '/search', body: params))
     end
 
     private

@@ -2,8 +2,12 @@
 
 module Sellsy
   class Invoice < Singular
-    def self.path
-      'invoice'
+    def collection_path
+      'invoices'
+    end
+
+    def validate(body = {})
+      client.post("#{path}/validate", body: body)
     end
   end
 end
