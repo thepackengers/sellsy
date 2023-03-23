@@ -102,6 +102,10 @@ module Sellsy
       Sellsy::V1::GetUnits.new(self)
     end
 
+    def create_payment
+      Sellsy::V1::CreatePayment.new(self)
+    end
+
     private
 
     attr_reader :id, :secret

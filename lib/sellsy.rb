@@ -23,7 +23,7 @@ module Sellsy
     # v1
     def_delegators :client, :get_infos, :document_create, :get_currencies,
                    :get_doc_layouts, :get_pay_mediums, :get_translation_languages,
-                   :get_units
+                   :get_units, :create_payment
 
     def client
       Client.default
@@ -60,3 +60,4 @@ require 'sellsy/v1/get_doc_layouts'
 require 'sellsy/v1/get_pay_mediums'
 require 'sellsy/v1/get_translation_languages'
 require 'sellsy/v1/get_units'
+require 'sellsy/v1/create_payment'
