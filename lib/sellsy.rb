@@ -55,6 +55,7 @@ require 'sellsy/taxes'
 # v1
 require 'sellsy/v1/get_infos'
 require 'sellsy/v1/document_create'
+require 'sellsy/v1/document_validate'
 require 'sellsy/v1/get_currencies'
 require 'sellsy/v1/get_doc_layouts'
 require 'sellsy/v1/get_pay_mediums'

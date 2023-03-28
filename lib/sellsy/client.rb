@@ -82,6 +82,10 @@ module Sellsy
       Sellsy::V1::DocumentCreate.new(self)
     end
 
+    def document_validate
+      Sellsy::V1::DocumentValidate.new(self)
+    end
+
     def get_currencies
       Sellsy::V1::GetCurrencies.new(self)
     end
