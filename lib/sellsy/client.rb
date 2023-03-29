@@ -74,6 +74,10 @@ module Sellsy
       Sellsy::Taxes.new(self)
     end
 
+    def credit_notes
+      Sellsy::CreditNotes.new(self)
+    end
+
     def get_infos
       Sellsy::V1::GetInfos.new(self)
     end
