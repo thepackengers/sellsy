@@ -18,7 +18,7 @@ module Sellsy
 
     # v2
     def_delegators :client, :invoices, :companies, :individuals,
-                   :document_models, :taxes
+                   :document_models, :taxes, :credit_notes
 
     # v1
     def_delegators :client, :get_infos, :document_create, :get_currencies,
@@ -41,6 +41,8 @@ require 'sellsy/company'
 require 'sellsy/companies'
 require 'sellsy/company_address'
 require 'sellsy/company_addresses'
+require 'sellsy/credit_note'
+require 'sellsy/credit_notes'
 require 'sellsy/document_model'
 require 'sellsy/document_models'
 require 'sellsy/individual'
