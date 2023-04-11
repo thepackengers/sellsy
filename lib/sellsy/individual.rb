@@ -9,5 +9,9 @@ module Sellsy
     def addresses
       IndividualAddresses.new(client, self)
     end
+
+    def payments
+      IndividualPayments.new(client, self)
+    end
   end
 end
