@@ -78,6 +78,10 @@ module Sellsy
       Sellsy::CreditNotes.new(self)
     end
 
+    def payment_methods
+      Sellsy::PaymentMethods.new(self)
+    end
+
     def get_infos
       Sellsy::V1::GetInfos.new(self)
     end
