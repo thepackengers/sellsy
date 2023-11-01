@@ -162,10 +162,21 @@ module Sellsy
     def error_message(response)
       if response['Content-Type'] == "application/json"
         error = JSON.parse(response.body)
-        error['message'] || error.dig('error', 'message')
+        return error['message'] if error['message'].is_a? String
+
+        details = humanize_details(error.dig('error', 'details'))
+        message = error.dig('error', 'message')
+
+        "#{message} - details: #{details}"
       else
         response.body[0..500]
       end
+    end
+
+    def humanize_details(details)
+      return unless details.is_a? Hash
+
+      details.map {|k ,v| [k,v].join(': ') }.join('. ')
     end
   end
 end

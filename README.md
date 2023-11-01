@@ -1,8 +1,6 @@
 # Sellsy
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/sellsy`. To experiment with that code, run `bin/console` for an interactive prompt.
-
-TODO: Delete this and the text above, and describe your gem
+A ruby API client for Sellsy.
 
 ## Installation
 
@@ -20,9 +18,32 @@ Or install it yourself as:
 
     $ gem install sellsy
 
-## Usage
+## Getting started
 
-TODO: Write usage instructions here
+First, set the credentials, if you use Rails, you can do this in an initializer.
+
+```ruby
+Sellsy.default_client_id = "<your client id>"
+Sellsy.default_secret_id = "<your secret>"
+```
+
+Then, you can use Sellsy singleton to make requests:
+
+```ruby
+# List the account invoices
+Sellsy.invoices.list
+```
+
+Or you can create a sellsy client yourself:
+
+```ruby
+sellsy = Sellsy::Client.new(client_id: "<your client id>", client_secret: "<your secret>")
+
+sellsy.invoices.list
+```
+
+If you need more information on supported requests, please check the code directly then share
+your discoveries in this documentation.
 
 ## Development
 
