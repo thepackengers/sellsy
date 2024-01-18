@@ -90,6 +90,10 @@ module Sellsy
       Sellsy::V1::DocumentCreate.new(self)
     end
 
+    def document_update_step
+      Sellsy::V1::DocumentUpdateStep.new(self)
+    end
+
     def document_validate
       Sellsy::V1::DocumentValidate.new(self)
     end
